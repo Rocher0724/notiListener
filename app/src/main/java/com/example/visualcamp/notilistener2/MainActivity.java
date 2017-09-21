@@ -1,12 +1,19 @@
 package com.example.visualcamp.notilistener2;
 
 import android.content.Intent;
+import android.support.annotation.NonNull;
 import android.support.v4.app.NotificationManagerCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
+import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.api.GoogleApiClient;
+import com.google.android.gms.common.api.GoogleApiClient.OnConnectionFailedListener;
+import com.google.android.gms.drive.Drive;
 import java.util.Set;
 
-public class MainActivity extends AppCompatActivity implements Observer{
+public class MainActivity extends AppCompatActivity implements Observer,
+    OnConnectionFailedListener {
 
   private Server server;
 
@@ -24,10 +31,7 @@ public class MainActivity extends AppCompatActivity implements Observer{
     }
 
     initObserver();
-//    startService(new Intent(this, NotificationCollectorMonitorService.class));
-
-//    Intent serviceIntent = new Intent(this, MyService.class);
-//    startService(serviceIntent);
+    init();
   }
 
   private void initObserver() {
@@ -55,5 +59,21 @@ public class MainActivity extends AppCompatActivity implements Observer{
   @Override
   public void notification(Data data) {
     // 여기서 데이터를 이용해먹자
+    // 는 아마 별로 쓸모없을듯 서비스에서 다해먹어야하기 때문.
+  }
+
+  public void init () {
+    GoogleApiClient mGoogleApiClient = new GoogleApiClient.Builder(this)
+        .enableAutoManage(this /* FragmentActivity */,
+            this /* OnConnectionFailedListener */)
+        .addApi(Drive.API)
+        .addScope(Drive.SCOPE_FILE)
+        .build();
+
+  }
+
+  @Override
+  public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
+
   }
 }

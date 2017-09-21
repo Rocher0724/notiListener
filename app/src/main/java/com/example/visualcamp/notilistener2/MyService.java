@@ -84,4 +84,8 @@ public class MyService extends NotificationListenerService implements Observer {
   public void notification(Data data) {
 
   }
+
+  public static final String VOICE_TRANSCRIPTION_MESSAGE_PATH = "/voice_transcription";
+
+
 }
