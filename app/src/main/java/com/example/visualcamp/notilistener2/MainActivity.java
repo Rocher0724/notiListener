@@ -1,21 +1,13 @@
 package com.example.visualcamp.notilistener2;
 
-import android.app.PendingIntent;
-import android.content.ComponentName;
-import android.content.Context;
 import android.content.Intent;
-import android.content.ServiceConnection;
-import android.os.IBinder;
-import android.support.v4.app.NotificationManagerCompat;
-import android.support.v4.app.RemoteInput;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
+import android.support.v4.app.NotificationManagerCompat;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
-import com.example.visualcamp.notilistener2.MyService.MyBinder;
 import com.example.visualcamp.notilistener2.data.Data;
 import io.realm.Realm;
 import java.util.Set;
@@ -138,6 +130,7 @@ public class MainActivity extends AppCompatActivity implements Observer {
 
           break;
         case R.id.button2:
+//          RealmResults<Data> data11 = realm.where(Data.class).contains("question","").findAll();
           data = realm.where(Data.class)
               .equalTo("question", et3.getText().toString())
               .findFirst();
