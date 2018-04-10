@@ -69,9 +69,9 @@ public class MyService extends NotificationListenerService implements Observer {
   @Override
   public void onNotificationPosted(StatusBarNotification sbn) {
 //    super.onNotificationPosted(sbn);
-//    Log.e("NotificationListener", "[snowdeer] onNotificationPosted() - " + sbn.toString());
-//    Log.e("NotificationListener", "[snowdeer] PackageName:" + sbn.getPackageName());
-//    Log.e("NotificationListener", "[snowdeer] PostTime:" + sbn.getPostTime());
+    Log.e("NotificationListener", "[snowdeer] onNotificationPosted() - " + sbn.toString());
+    Log.e("NotificationListener", "[snowdeer] PackageName:" + sbn.getPackageName());
+    Log.e("NotificationListener", "[snowdeer] PostTime:" + sbn.getPostTime());
 
     Notification notification = sbn.getNotification();
 

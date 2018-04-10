@@ -36,17 +36,7 @@ public class MainActivity extends AppCompatActivity implements Observer {
 
     initObserver();
     init();
-//    initService();
 
-    // NotificationListenerService 를 상속받은 MyService는 콜백같이 호출되기 때문에
-    // startService를 해주지않아도 된다.
-  }
-
-  private void initService() {
-    Intent intent = new Intent(this, MyService.class);
-
-
-//    startService(intent);
   }
 
   private void initObserver() {
