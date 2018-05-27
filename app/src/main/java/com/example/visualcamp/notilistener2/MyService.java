@@ -23,7 +23,6 @@ import java.util.List;
 public class MyService extends NotificationListenerService implements Observer {
 
   private static final String TAG = "MyService";
-  private Server server;
 //  Data data;
   Store store;
   Post post;
@@ -36,7 +35,6 @@ public class MyService extends NotificationListenerService implements Observer {
   public void onCreate() {
     Log.e("service" , " onCreate");
     super.onCreate();
-    initObserver();
     realmInit();
   }
 
@@ -45,12 +43,6 @@ public class MyService extends NotificationListenerService implements Observer {
     realm = Realm.getDefaultInstance();
     Log.e("realmInit","렘시작");
   }
-
-  private void initObserver() {
-    server = Server.getInstance();
-    server.addObserver(this);
-  }
-
 
   @Override
   public IBinder onBind(Intent intent) {
@@ -69,9 +61,9 @@ public class MyService extends NotificationListenerService implements Observer {
   @Override
   public void onNotificationPosted(StatusBarNotification sbn) {
 //    super.onNotificationPosted(sbn);
-    Log.e("NotificationListener", "[snowdeer] onNotificationPosted() - " + sbn.toString());
-    Log.e("NotificationListener", "[snowdeer] PackageName:" + sbn.getPackageName());
-    Log.e("NotificationListener", "[snowdeer] PostTime:" + sbn.getPostTime());
+    Log.e("NotificationListener", "onNotificationPosted() - " + sbn.toString());
+    Log.e("NotificationListener", "PackageName:" + sbn.getPackageName());
+    Log.e("NotificationListener", "PostTime:" + sbn.getPostTime());
 
     Notification notification = sbn.getNotification();
 
@@ -147,25 +139,15 @@ public class MyService extends NotificationListenerService implements Observer {
         return null;
 
       } else { // 실패한 입력이다.
-        return "[충열봇] 입력이 실패하였습니다.";
+        return "입력이 실패하였습니다.";
       }
     } else { // 출력부
-      if (text.equals("이충열") ||
-          text.equals("이충렬") ||
-          text.equals("충렬") ||
-          text.equals("충열") ||
-          text.equals("충열이형") ||
-          text.equals("충형") ||
-          text.equals("충렬이형") ||
-          text.equals("이충랼") ||
-          text.equals("충열님") ||
-          text.equals("충렬님") ||
-          text.equals("충님")) {
-        return " 주인님은 늘 새로워! 짜릿해! 최고야!";
+      if (text.equals("특정메시지 필터링")) {
+        return "필터링되었습니다.";
       }
 
-      if (text.equals("충열봇")) {
-        return "이시대 최고의 카톡봇";
+      if (text.equals("카톡봇")) {
+        return "이시대 최고의 챗봇";
       }
       Data data1 = realm.where(Data.class)
           .equalTo("question", text)
@@ -189,7 +171,7 @@ public class MyService extends NotificationListenerService implements Observer {
     for(RemoteInput remoteIn : store.remoteInputs){
 //            getDetailsOfNotification(remoteIn);
       remoteInputs[i] = remoteIn;
-      localBundle.putCharSequence(remoteInputs[i].getResultKey(), "[충열봇]" + message);//This work, apart from Hangouts as probably they need additional parameter (notification_tag?)
+      localBundle.putCharSequence(remoteInputs[i].getResultKey(), "[카톡봇]" + message);//This work, apart from Hangouts as probably they need additional parameter (notification_tag?)
       i++;
     }
 

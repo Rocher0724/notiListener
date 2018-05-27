@@ -15,7 +15,6 @@ import java.util.Set;
 public class MainActivity extends AppCompatActivity implements Observer {
 
   private static final String TAG = "MainActivity";
-  private Server server;
   Button btn, btn2;
   Data data;
   Realm realm;
@@ -34,14 +33,8 @@ public class MainActivity extends AppCompatActivity implements Observer {
       startActivity(intent);
     }
 
-    initObserver();
     init();
 
-  }
-
-  private void initObserver() {
-    server = Server.getInstance();
-    server.addObserver(this);
   }
 
   public void init() {
